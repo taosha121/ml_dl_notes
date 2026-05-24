@@ -24,13 +24,21 @@ python -m ipykernel install --user --name ml_dl --display-name "Python (ml_dl)"
 
 ### 第二部分：机器学习基础 → `part2_machine_learning.ipynb`
 
+**机器学习概述**
 - 2.1 机器学习概述 — 问题类型、学习范式、基本流程
-- 2.2 数据预处理 — 缺失值处理、特征缩放、编码、Pipeline、PCA 降维
-- 2.3 线性模型 — 线性回归、逻辑回归、正则化（L1/L2）
-- 2.4 树模型 — 决策树、随机森林、梯度提升（XGBoost/LightGBM）
-- 2.5 支持向量机 — 硬间隔、软间隔、核函数
-- 2.6 聚类算法 — K-Means、DBSCAN、层次聚类
-- 2.7 模型评估 — 交叉验证、偏差-方差权衡、分类/回归指标
+- 2.2 数据预处理 — 缺失值处理、特征缩放、编码（LabelEncoder / OrdinalEncoder / OneHotEncoder）
+
+**无监督学习**
+- 2.3 降维 — PCA 原理、SVD vs PCA
+- 2.4 聚类算法 — K-Means、DBSCAN
+
+**监督学习**
+- 2.5 线性模型 — 线性回归（单输出/多输出）、多项式回归、逻辑回归、正则化（L1/L2）
+- 2.6 树模型 — 决策树、随机森林、梯度提升（XGBoost）
+- 2.7 支持向量机 — 硬间隔、软间隔、核函数
+
+**评估**
+- 2.8 模型评估 — 交叉验证、偏差-方差权衡、分类/回归指标
 
 ### 第三部分：深度学习基础 → `part3_deep_learning.ipynb`
 
