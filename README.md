@@ -16,29 +16,28 @@ python -m ipykernel install --user --name ml_dl --display-name "Python (ml_dl)"
 
 ## 目录
 
-### 第一部分：数学基础 → `part1_math_foundations.ipynb`
+### 第一部分：数学基础 → `ch1_math_foundations.ipynb`
 
 - 1.1 线性代数 — 向量、矩阵运算、特征值分解、SVD
 - 1.2 概率与统计 — 贝叶斯定理、常见分布、最大似然估计
 - 1.3 微积分与优化 — 偏导数、梯度、链式法则、凸优化基础
 
-### 第二部分：机器学习基础 → `part2_machine_learning.ipynb`
+### 第二部分：机器学习基础
 
-**机器学习概述**
+**`ch2.1_overview.ipynb` — 概述与预处理**
 - 2.1 机器学习概述 — 问题类型、学习范式、基本流程
 - 2.2 数据预处理 — 缺失值处理、特征缩放、编码（LabelEncoder / OrdinalEncoder / OneHotEncoder）
 
-**无监督学习**
+**`ch2.2_unsupervised.ipynb` — 无监督学习**
 - 2.3 降维 — PCA 原理、SVD vs PCA
 - 2.4 聚类算法 — K-Means、DBSCAN
 
-**监督学习**
-- 2.5 线性模型 — 线性回归（单输出/多输出）、多项式回归、逻辑回归、正则化（L1/L2）
-- 2.6 树模型 — 决策树、随机森林、梯度提升（XGBoost）
-- 2.7 支持向量机 — 硬间隔、软间隔、核函数
-
-**评估**
-- 2.8 模型评估 — 交叉验证、偏差-方差权衡、分类/回归指标
+**`ch2.3_supervised.ipynb` — 监督学习**
+- 2.5 线性模型 — 线性回归（单输出/多输出）、多项式回归、逻辑回归
+- 2.6 树模型与集成学习 — 决策树（ID3/C4.5/CART）、随机森林、AdaBoost、GBDT
+- 2.7 K 近邻（KNN） — 懒惰学习、K 值选择、距离度量、维度诅咒
+- 2.8 支持向量机 — 核函数、支持向量、间隔最大化
+- 2.9 模型评估 — 混淆矩阵、Accuracy/Precision/Recall/F1/ROC-AUC、MAE/RMSE/R²
 
 ### 第三部分：深度学习基础 → `part3_deep_learning.ipynb`
 
