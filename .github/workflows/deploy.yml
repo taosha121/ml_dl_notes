@@ -1,0 +1,99 @@
+name: Deploy Notebooks to GitHub Pages
+
+on:
+  push:
+    branches: [main]
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install nbconvert
+        run: pip install nbconvert
+
+      - name: Convert notebooks to HTML
+        run: |
+          mkdir -p _site
+          for nb in *.ipynb; do
+            jupyter nbconvert --to html "$nb" --output-dir _site
+          done
+
+      - name: Generate index page
+        run: |
+          cat > _site/index.html << 'EOF'
+          <!DOCTYPE html>
+          <html lang="zh">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>机器学习与深度学习知识分享</title>
+            <style>
+              body { font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                     max-width: 800px; margin: 60px auto; padding: 0 24px; color: #24292f; }
+              h1 { font-size: 1.8rem; border-bottom: 1px solid #d0d7de; padding-bottom: 12px; }
+              h2 { font-size: 1.1rem; color: #57606a; margin-top: 32px; margin-bottom: 8px; }
+              ul { padding-left: 0; list-style: none; }
+              li { margin: 8px 0; }
+              a { color: #0969da; text-decoration: none; font-size: 0.95rem; }
+              a:hover { text-decoration: underline; }
+              .tag { font-size: 0.75rem; background: #ddf4ff; color: #0550ae;
+                     padding: 2px 8px; border-radius: 12px; margin-left: 8px; }
+            </style>
+          </head>
+          <body>
+            <h1>机器学习与深度学习知识分享</h1>
+            <p>面向有一定编程基础的程序员，了解 Python，但不一定有 ML/DL 背景。</p>
+
+            <h2>第一部分：数学基础</h2>
+            <ul>
+              <li><a href="ch1_math_foundations.html">ch1_math_foundations</a><span class="tag">线性代数 · 概率统计 · 微积分</span></li>
+            </ul>
+
+            <h2>第二部分：机器学习基础</h2>
+            <ul>
+              <li><a href="ch2.1_overview.html">ch2.1_overview</a><span class="tag">概述 · 预处理</span></li>
+              <li><a href="ch2.2_unsupervised.html">ch2.2_unsupervised</a><span class="tag">降维 · 聚类</span></li>
+              <li><a href="ch2.3_supervised.html">ch2.3_supervised</a><span class="tag">线性模型 · 树模型 · KNN · SVM · 模型评估</span></li>
+            </ul>
+
+            <h2>第三部分：深度学习基础</h2>
+            <ul>
+              <li><a href="ch3.1_nn_basics.html">ch3.1_nn_basics</a><span class="tag">神经网络 · 反向传播 · 正则化</span></li>
+              <li><a href="ch3.2_cnn.html">ch3.2_cnn</a><span class="tag">CNN · 卷积层 · ResNet</span></li>
+              <li><a href="ch3.3_rnn.html">ch3.3_rnn</a><span class="tag">RNN · LSTM · GRU</span></li>
+            </ul>
+
+            <h2>分享会材料</h2>
+            <ul>
+              <li><a href="sharingsession_cart.html">sharingsession_cart</a><span class="tag">CART 决策树</span></li>
+            </ul>
+          </body>
+          </html>
+          EOF
+
+      - uses: actions/configure-pages@v4
+
+      - uses: actions/upload-pages-artifact@v3
+        with:
+          path: _site
+
+      - uses: actions/deploy-pages@v4
+        id: deployment

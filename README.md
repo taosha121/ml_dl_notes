@@ -3,6 +3,8 @@
 面向有一定编程基础的程序员，了解 Python，但不一定有 ML/DL 背景。  
 每章先讲清楚核心概念与直觉，再配合 Python 代码示例加深理解。
 
+📖 **在线阅读：[taosha121.github.io/ml_dl_notes](https://taosha121.github.io/ml_dl_notes)**
+
 ## 环境准备
 
 ```bash
