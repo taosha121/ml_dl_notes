@@ -39,13 +39,18 @@ python -m ipykernel install --user --name ml_dl --display-name "Python (ml_dl)"
 - 2.8 支持向量机 — 核函数、支持向量、间隔最大化
 - 2.9 模型评估 — 混淆矩阵、Accuracy/Precision/Recall/F1/ROC-AUC、MAE/RMSE/R²
 
-### 第三部分：深度学习基础 → `part3_deep_learning.ipynb`
+### 第三部分：深度学习基础
 
+**`ch3.1_nn_basics.ipynb` — 神经网络基础与训练**
 - 3.1 神经网络基础 — 感知机、多层网络、激活函数
 - 3.2 训练原理 — 前向传播、反向传播、梯度下降变体（SGD/Adam）
 - 3.3 正则化与调参 — Dropout、BatchNorm、学习率调度、早停
-- 3.4 卷积神经网络（CNN） — 卷积层、池化、经典架构（ResNet）
-- 3.5 循环神经网络（RNN） — 序列建模、梯度消失、LSTM/GRU
+
+**`ch3.2_cnn.ipynb` — 卷积神经网络（CNN）**
+- 3.4 卷积神经网络 — 卷积层、池化、经典架构（LeNet → VGG → ResNet）、CIFAR-10 实战
+
+**`ch3.3_rnn.ipynb` — 循环神经网络（RNN）**
+- 3.5 循环神经网络 — 序列建模、梯度消失、LSTM/GRU、时序预测与情感分类实战
 
 ### 第四部分：现代深度学习 → `part4_modern_dl.ipynb`
 
