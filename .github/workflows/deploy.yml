@@ -84,6 +84,7 @@ jobs:
             <h2>分享会材料</h2>
             <ul>
               <li><a href="sharingsession_cart.html">sharingsession_cart</a><span class="tag">CART 决策树</span></li>
+              <li><a href="sharingsession_sentiment.html">sharingsession_sentiment</a><span class="tag">情感分析 · Embedding · LSTM</span></li>
             </ul>
           </body>
           </html>
