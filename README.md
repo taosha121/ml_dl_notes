@@ -7,12 +7,65 @@
 
 ## 环境准备
 
+### 第一步：安装 Python 3.11
+
+推荐使用 **Python 3.11**（稳定性最佳，主流 ML 库已全面适配）。
+
+通过 **Homebrew** 安装（macOS 推荐方式）：
+
 ```bash
-pip install -r requirements.txt
-python -m ipykernel install --user --name ml_dl --display-name "Python (ml_dl)"
+brew install python@3.11
+python3.11 --version   # 确认 3.11 已安装
 ```
 
-详见各 notebook 开头的「环境准备」小节。
+### 第二步：创建虚拟环境
+
+在项目目录下创建独立的 Python 环境，避免包版本冲突：
+
+```bash
+# 创建虚拟环境（固定 Python 3.11）
+python3.11 -m venv .venv
+
+# 激活（macOS / Linux）
+source .venv/bin/activate
+
+# 激活后确认版本
+python --version    # 应输出 Python 3.11.x
+```
+
+> 如果使用 **Miniconda**，等效命令为：
+> ```bash
+> conda create -n ml_dl python=3.11
+> conda activate ml_dl
+> ```
+
+### 第三步：安装依赖
+
+```bash
+pip install -r requirements.txt
+```
+
+> **注意**：`torch`、`transformers` 等大包合计约 3-5 GB，首次安装耗时较长。如只需运行第一部分（数学基础），可先只装轻量依赖：
+> ```bash
+> pip install numpy pandas scipy matplotlib seaborn scikit-learn jupyter
+> ```
+
+### 第四步：下载预训练模型（第二部分需要）
+
+第二部分聚类算法用到 `text2vec-base-chinese`（768 维中文语义向量模型，约 400 MB）。模型通过 **ModelScope（魔搭社区）** 下载，无需注册，国内网络直接访问：
+
+```python
+from modelscope import snapshot_download
+snapshot_download('Jerry0/text2vec-base-chinese')
+```
+
+> 也可以在 Notebook 中直接运行上面两行，首次执行时自动下载并缓存到本地，后续运行直接复用缓存。
+
+### 第五步：注册 Jupyter kernel
+
+```bash
+python -m ipykernel install --user --name ml_dl --display-name "Python 3.11 (ml_dl)"
+```
 
 ---
 
@@ -54,16 +107,17 @@ python -m ipykernel install --user --name ml_dl --display-name "Python (ml_dl)"
 **`ch3.3_rnn.ipynb` — 循环神经网络（RNN）**
 - 3.5 循环神经网络 — 序列建模、梯度消失、LSTM/GRU、时序预测与情感分类实战
 
-### 第四部分：现代深度学习 → `part4_modern_dl.ipynb`
+### 分享会材料
 
-- 4.1 Transformer 与注意力机制 — Self-Attention、位置编码、Encoder-Decoder
-- 4.2 预训练与迁移学习 — BERT、ViT、Fine-tuning 范式
-- 4.3 生成模型概览 — VAE、GAN、Diffusion Models（概念介绍）
-- 4.4 大语言模型简介 — GPT 架构、Scaling Law、提示工程（概念介绍）
+**`sharingsession_cart.ipynb` — CART 决策树**
+- 决策树结构、Gini 不纯度、分裂准则对比（ID3/C4.5/CART）、剪枝演示
 
-### 第五部分：实践 → `part5_practice.ipynb`
+**`sharingsession_sentiment.ipynb` — 情感分析**
+- 词袋模型的局限、Word Embedding 原理、LSTM 情感分类实战（IMDb 数据集）
 
-- 5.1 PyTorch 入门 — Tensor、Dataset/DataLoader、训练循环
-- 5.2 实战项目一：图像分类（CNN + CIFAR-10）
-- 5.3 实战项目二：文本情感分类（Transformer 微调）
-- 5.4 实战项目三：时序预测（LSTM）
+---
+
+> **计划中（尚未完成）**
+>
+> - 第四部分：现代深度学习 — Transformer、预训练模型（BERT/ViT）、生成模型（VAE/GAN/Diffusion）、LLM 简介
+> - 第五部分：实践项目 — PyTorch 入门、图像分类、文本情感分类（Transformer 微调）、时序预测
