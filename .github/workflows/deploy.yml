@@ -11,7 +11,7 @@ permissions:
 
 concurrency:
   group: pages
-  cancel-in-progress: true
+  cancel-in-progress: false
 
 jobs:
   deploy:
@@ -79,6 +79,17 @@ jobs:
               <li><a href="ch3.1_nn_basics.html">ch3.1_nn_basics</a><span class="tag">神经网络 · 反向传播 · 正则化</span></li>
               <li><a href="ch3.2_cnn.html">ch3.2_cnn</a><span class="tag">CNN · 卷积层 · ResNet</span></li>
               <li><a href="ch3.3_rnn.html">ch3.3_rnn</a><span class="tag">RNN · LSTM · GRU</span></li>
+            </ul>
+
+            <h2>第四章：现代深度学习</h2>
+            <ul>
+              <li><a href="ch4_modern_dl.html">ch4_modern_dl</a><span class="tag">Attention · Transformer · BERT · GPT · 生成模型</span></li>
+              <li><a href="ch4.1_compression_finetuning.html">ch4.1_compression_finetuning</a><span class="tag">知识蒸馏 · 量化 · LoRA · PEFT</span></li>
+            </ul>
+
+            <h2>第五章：LLM 工程实践</h2>
+            <ul>
+              <li><a href="ch5_llm_engineering.html">ch5_llm_engineering</a><span class="tag">RAG · Agent · ReAct · 工具调用</span></li>
             </ul>
 
             <h2>分享会材料</h2>
