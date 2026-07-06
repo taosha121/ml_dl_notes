@@ -84,7 +84,8 @@ jobs:
             <h2>第四章：现代深度学习</h2>
             <ul>
               <li><a href="ch4_modern_dl.html">ch4_modern_dl</a><span class="tag">Attention · Transformer · BERT · GPT · 生成模型</span></li>
-              <li><a href="ch4.1_compression_finetuning.html">ch4.1_compression_finetuning</a><span class="tag">知识蒸馏 · 量化 · LoRA · PEFT</span></li>
+              <li><a href="ch4.1_compression_finetuning.html">ch4.1_compression_finetuning</a><span class="tag">知识蒸馏 · 剪枝 · 量化</span></li>
+              <li><a href="ch4.2_finetuning.html">ch4.2_finetuning</a><span class="tag">全量微调 · LoRA · PEFT · 指令微调</span></li>
             </ul>
 
             <h2>第五章：LLM 工程实践</h2>
