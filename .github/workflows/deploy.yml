@@ -97,6 +97,7 @@ jobs:
             <ul>
               <li><a href="sharingsession_cart.html">sharingsession_cart</a><span class="tag">CART 决策树</span></li>
               <li><a href="sharingsession_sentiment.html">sharingsession_sentiment</a><span class="tag">情感分析 · Embedding · LSTM</span></li>
+              <li><a href="sharingsession_lora_finetuning.html">sharingsession_lora_finetuning</a><span class="tag">LoRA · PEFT · 风格分类 · 微调</span></li>
             </ul>
           </body>
           </html>
