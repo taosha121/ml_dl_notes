@@ -26,8 +26,8 @@ jobs:
         with:
           python-version: "3.11"
 
-      - name: Install nbconvert
-        run: pip install nbconvert
+      - name: Install dependencies
+        run: pip install nbconvert markdown
 
       - name: Convert notebooks to HTML
         run: |
@@ -35,6 +35,49 @@ jobs:
           for nb in *.ipynb; do
             jupyter nbconvert --to html "$nb" --output-dir _site
           done
+
+      - name: Convert markdown to HTML
+        run: |
+          python3 << 'PYEOF'
+          import markdown
+          import os
+
+          md_files = [f for f in os.listdir('.') if f.endswith('.md') and f != 'README.md']
+          for md_file in md_files:
+              with open(md_file, 'r', encoding='utf-8') as f:
+                  content = f.read()
+              html_body = markdown.markdown(content, extensions=['tables', 'fenced_code'])
+              stem = os.path.splitext(md_file)[0]
+              html = f"""<!DOCTYPE html>
+          <html lang="zh">
+          <head>
+            <meta charset="UTF-8">
+            <meta name="viewport" content="width=device-width, initial-scale=1.0">
+            <title>{stem}</title>
+            <style>
+              body {{ font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+                     max-width: 860px; margin: 60px auto; padding: 0 24px; color: #24292f; line-height: 1.7; }}
+              h1 {{ font-size: 1.8rem; border-bottom: 1px solid #d0d7de; padding-bottom: 12px; }}
+              h2 {{ font-size: 1.3rem; margin-top: 40px; border-bottom: 1px solid #eaecef; padding-bottom: 6px; }}
+              h3 {{ font-size: 1.1rem; margin-top: 28px; }}
+              table {{ border-collapse: collapse; width: 100%; margin: 16px 0; }}
+              th, td {{ border: 1px solid #d0d7de; padding: 8px 12px; text-align: left; }}
+              th {{ background: #f6f8fa; }}
+              blockquote {{ border-left: 4px solid #d0d7de; margin: 0; padding: 8px 16px; color: #57606a; background: #f6f8fa; }}
+              code {{ background: #f6f8fa; padding: 2px 6px; border-radius: 4px; font-size: 0.9em; }}
+              a {{ color: #0969da; }}
+              .back {{ margin-bottom: 24px; }}
+            </style>
+          </head>
+          <body>
+            <p class="back"><a href="index.html">← 返回目录</a></p>
+            {html_body}
+          </body>
+          </html>"""
+              with open(f'_site/{stem}.html', 'w', encoding='utf-8') as f:
+                  f.write(html)
+              print(f'Converted {md_file} -> _site/{stem}.html')
+          PYEOF
 
       - name: Generate index page
         run: |
@@ -56,11 +99,18 @@ jobs:
               a:hover { text-decoration: underline; }
               .tag { font-size: 0.75rem; background: #ddf4ff; color: #0550ae;
                      padding: 2px 8px; border-radius: 12px; margin-left: 8px; }
+              .tag-green { font-size: 0.75rem; background: #dafbe1; color: #116329;
+                           padding: 2px 8px; border-radius: 12px; margin-left: 8px; }
             </style>
           </head>
           <body>
             <h1>机器学习与深度学习知识分享</h1>
             <p>面向有一定编程基础的程序员，了解 Python，但不一定有 ML/DL 背景。</p>
+
+            <h2>AI 入门分享</h2>
+            <ul>
+              <li><a href="ai_intro_sharing.html">人工智能入门：认识大模型</a><span class="tag-green">大模型 · Agent · 使用入门</span></li>
+            </ul>
 
             <h2>第一部分：数学基础</h2>
             <ul>
